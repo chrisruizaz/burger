@@ -3,7 +3,12 @@ $(function() {
   $(".change-devour").on("click", function(event) {
     var id = $(this).data("id");
     var newDevour = $(this).data("newdevoured");
-
+    console.log(newDevour);
+    if (newDevour === 1) {
+      newDevour = 0;
+    } else {
+      newDevour = 1;
+    }
     var newDevourState = {
       devour: newDevour
     };
@@ -21,7 +26,7 @@ $(function() {
 
   $(".delete").on("click", function(event) {
     var id = $(this).data("id");
-    var newDevour = $(this).data("newdevoured");
+    var newDevour = $(this).data("newdevour");
 
     var newDevourState = {
       devour: newDevour
@@ -29,7 +34,7 @@ $(function() {
 
     // Send the PUT request.
     $.ajax("/api/burgers/" + id, {
-      type: "PUT",
+      type: "DELETE",
       data: newDevourState
     }).then(function() {
       console.log("changed devour to", newDevour);
